@@ -14,7 +14,8 @@ js/assistant.js     Ada, the AI assistant
 
 ## 1. Before launch: edit these
 1. **`js/config.js`**: replace every value marked `(PLACEHOLDER)`. That covers the phone number, WhatsApp number, address, Instagram handle, bank account and delivery zones and fees.
-2. **`js/menu-data.js`**: set your real dishes and prices. To show a photo on an item, add `img: "images/nkwobi.jpg"` and put the photo in an `images/` folder. Items without a photo show a styled icon instead.
+2. **Photos:** put a wide photo of the room or bar at night in `images/` (for example `images/hero.jpg`) and set `heroImage: "images/hero.jpg"` in `js/config.js`. It replaces the logo panel at the top of the page.
+3. **`js/menu-data.js`**: set your real dishes and prices. To show a photo on an item, add `img: "images/nkwobi.jpg"` and put the photo in an `images/` folder. Items without a photo show a styled icon instead.
 
 ## 2. Payments
 - **Online (Paystack):** create an account at paystack.com. Copy your **Public Key** (Settings → API Keys) into `paystackPublicKey` in `config.js`. Use `pk_test_...` while testing and `pk_live_...` when you go live. Customers can then pay by card, bank transfer or USSD.

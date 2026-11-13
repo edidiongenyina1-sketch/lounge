@@ -55,54 +55,51 @@
   const state = { cat: "all", q: "", tags: new Set() };
 
   function renderTabs() {
-    const tabs = [{ id: "all", name: "All", icon: "all" }, ...CATS];
-    $("#menuTabs").innerHTML = tabs.map(t =>
-      `<button class="tab" role="tab" data-cat="${t.id}" aria-selected="${t.id === state.cat}">${icon(t.icon)}${esc(t.name)}</button>`).join("");
+    $("#menuTabs").innerHTML = CATS.map(c =>
+      `<a href="#cat-${c.id}" data-cat="${c.id}">${esc(c.name)}<span>${MENU.filter(m => m.cat === c.id).length}</span></a>`).join("");
   }
 
-  function dishCard(m, i) {
-    const cat = catOf(m.cat), qty = cart[m.id]?.qty || 0;
-    const tagLabel = { signature: "Signature", spicy: "Spicy", veg: "Meat-free", new: "New", popular: "Popular", share: "For sharing" };
-    const tags = m.tags.slice(0, 2).map(t => `<span class="tag tag--${t}">${tagLabel[t] || t}</span>`).join("");
-    const media = m.img
-      ? `<img src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy">`
-      : `<div class="dish__art g-${m.cat}">${icon(cat.icon)}</div>`;
-    const ctrl = qty
-      ? `<div class="qty" aria-label="Quantity"><button data-dec="${m.id}" aria-label="Remove one">−</button><span>${qty}</span><button data-inc="${m.id}" aria-label="Add one">+</button></div>`
-      : `<button class="add-btn" data-inc="${m.id}">+ Add</button>`;
-    return `<article class="dish" style="animation-delay:${Math.min(i, 12) * 35}ms">
-      <div class="dish__img">${media}<div class="dish__tags">${tags}</div></div>
-      <div class="dish__body">
-        <h3 class="dish__name">${esc(m.name)}</h3>
-        <p class="dish__desc">${esc(m.desc)}</p>
-        <div class="dish__foot"><span class="dish__price">${fmt(m.price)}</span>${ctrl}</div>
-      </div></article>`;
+  const NOTE = { signature: "House signature", spicy: "Spicy", veg: "Meat-free", new: "New", share: "For sharing" };
+  const ctrlHTML = id => {
+    const qty = cart[id]?.qty || 0;
+    return qty
+      ? `<div class="qty" aria-label="Quantity in order"><button data-dec="${id}" aria-label="Remove one">−</button><span>${qty}</span><button data-inc="${id}" aria-label="Add one">+</button></div>`
+      : `<button class="add" data-inc="${id}" aria-label="Add ${esc(byId[id].name)} to order">Add</button>`;
+  };
+
+  function itemRow(m) {
+    const notes = m.tags.filter(t => NOTE[t]).map(t => `<span class="${t === "signature" ? "sig" : ""}">${NOTE[t]}</span>`).join("");
+    return `<li class="item${m.img ? " item--img" : ""}">
+      ${m.img ? `<img class="item__img" src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy">` : ""}
+      <div class="item__main">
+        <div class="item__head"><h4>${esc(m.name)}</h4><i aria-hidden="true"></i><span class="item__price">${fmt(m.price)}</span></div>
+        <p class="item__desc">${esc(m.desc)}</p>
+        ${notes ? `<p class="item__notes">${notes}</p>` : ""}
+      </div>
+      <div class="item__ctrl" data-ctrl="${m.id}">${ctrlHTML(m.id)}</div>
+    </li>`;
   }
 
   function filteredMenu() {
     const q = state.q.trim().toLowerCase();
     return MENU.filter(m =>
-      (q ? true : state.cat === "all" || m.cat === state.cat) &&
       (!q || (m.name + " " + m.desc + " " + catOf(m.cat).name).toLowerCase().includes(q)) &&
       [...state.tags].every(t => m.tags.includes(t)));
   }
 
   function renderMenu() {
     const list = filteredMenu();
-    $("#menuGrid").innerHTML = list.map(dishCard).join("");
+    $("#menuGrid").innerHTML = CATS.map(c => {
+      const items = list.filter(m => m.cat === c.id);
+      if (!items.length) return "";
+      return `<section class="course" id="cat-${c.id}"><h3 class="course__title">${esc(c.name)}</h3><ul class="course__list">${items.map(itemRow).join("")}</ul></section>`;
+    }).join("");
     $("#menuEmpty").hidden = list.length > 0;
   }
 
-  // Update just the quantity controls without re-animating the grid
+  // Update just the quantity controls
   function refreshMenuControls() {
-    $$("#menuGrid .dish").forEach(card => {
-      const btn = card.querySelector("[data-inc]"); if (!btn) return;
-      const id = btn.dataset.inc, foot = card.querySelector(".dish__foot");
-      const qty = cart[id]?.qty || 0;
-      foot.lastElementChild.outerHTML = qty
-        ? `<div class="qty" aria-label="Quantity"><button data-dec="${id}" aria-label="Remove one">−</button><span>${qty}</span><button data-inc="${id}" aria-label="Add one">+</button></div>`
-        : `<button class="add-btn" data-inc="${id}">+ Add</button>`;
-    });
+    $$("#menuGrid [data-ctrl]").forEach(el => { el.innerHTML = ctrlHTML(el.dataset.ctrl); });
   }
 
   /* =========================================================
@@ -133,12 +130,11 @@
     $("#cartItems").innerHTML = ids.length ? ids.map(id => {
       const m = byId[id], l = cart[id];
       return `<div class="cart-line">
-        <div class="cart-line__thumb g-${m.cat}">${icon(catOf(m.cat).icon)}</div>
         <div><h5>${esc(m.name)}</h5><small>${fmt(m.price)} × ${l.qty} = <b>${fmt(m.price * l.qty)}</b></small>
           <input class="cart-line__note" data-note="${id}" placeholder="Add a note (e.g. extra pepper)" value="${esc(l.note)}" maxlength="80"></div>
         <div class="qty"><button data-dec="${id}" aria-label="Remove one">−</button><span>${l.qty}</span><button data-inc="${id}" aria-label="Add one">+</button></div>
       </div>`;
-    }).join("") : `<div class="cart-empty"><strong>Your cart is empty</strong>Add something delicious from the menu, or ask Ada for a recommendation.</div>`;
+    }).join("") : `<div class="cart-empty"><strong>Nothing here yet</strong>Add dishes or drinks from the menu, or ask Ada to suggest something.</div>`;
     refreshMenuControls();
   }
 
@@ -379,7 +375,11 @@
     if (!t) return;
     if (t.dataset.inc) { const first = !cart[t.dataset.inc]; addToCart(t.dataset.inc); if (first) toast(`${byId[t.dataset.inc].name} added`); }
     else if (t.dataset.dec) setQty(t.dataset.dec, (cart[t.dataset.dec]?.qty || 0) - 1, true);
-    else if (t.dataset.cat) { state.cat = t.dataset.cat; state.q = ""; $("#menuSearch").value = ""; renderTabs(); renderMenu(); }
+    else if (t.dataset.cat) {
+      e.preventDefault();
+      if (state.q || state.tags.size) { state.q = ""; state.tags.clear(); $("#menuSearch").value = ""; $$("[data-tag]").forEach(b => b.classList.remove("active")); renderMenu(); }
+      $("#cat-" + t.dataset.cat)?.scrollIntoView({ behavior: "smooth" });
+    }
     else if (t.dataset.tag) { const g = t.dataset.tag; state.tags.has(g) ? state.tags.delete(g) : state.tags.add(g); t.classList.toggle("active"); renderMenu(); }
     else if (t.dataset.track) trackOrder(t.dataset.track);
     else if (t.dataset.reorder) { const o = getOrder(t.dataset.reorder); o.items.forEach(it => byId[it.id] && setQty(it.id, (cart[it.id]?.qty || 0) + it.qty, true)); openDrawer(); }
@@ -413,9 +413,21 @@
   function fillInfo() {
     const open = isOpenNow();
     $("#openStatus").textContent = open ? "Open now" : "Closed now · order ahead";
-    $(".hero .eyebrow .dot").classList.toggle("closed", !open);
+    $("#openDot")?.classList.toggle("closed", !open);
     $("#addr").textContent = C.address;
     $("#dirLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(C.mapQuery);
+    // today's hours + hero
+    const [o, c] = C.openingTimes[new Date().getDay()];
+    const hh = h => { h = h % 24; return h === 0 ? "12 AM" : h === 12 ? "12 PM" : h < 12 ? h + " AM" : (h - 12) + " PM"; };
+    $("#todayHours").textContent = `Today ${hh(o)} – ${hh(c)}`;
+    $("#heroBook").href = waLink(`Hello ${C.name}, I'd like to book a table.`);
+    const media = $("#heroMedia");
+    if (C.heroImage) { media.style.backgroundImage = `url("${C.heroImage}")`; media.classList.add("has-photo"); }
+    else media.insertAdjacentHTML("afterbegin", '<img class="emblem" src="images/logo-mark-160.webp" alt="" width="160" height="192">');
+    const ev = C.events.find(e => e.day === new Date().getDay());
+    if (ev) $("#tonight").innerHTML = `<p class="tonight__k">Tonight at the Court</p><h2>${esc(ev.title)}</h2><p>${esc(ev.desc)}</p>
+      <div class="tonight__row"><span>From ${esc(ev.time)}</span><a target="_blank" rel="noopener" href="${waLink(`Hello ${C.name}, I'd like to book a table for ${ev.title} tonight.`)}">Reserve a table</a></div>`;
+    $("#feeList").innerHTML = C.deliveryZones.map(z => `<dt>${esc(z.name)}</dt><dd>${fmt(z.fee)}</dd>`).join("");
     $("#mapCard").href = $("#dirLink").href;
     $("#mapAddr").textContent = C.address;
     const dow = new Date().getDay(), order = [1, 2, 3, 4, 5, 6, 0];

@@ -101,10 +101,10 @@
 
     // greetings / small talk
     if (/^(hi|hello|hey|good (morning|afternoon|evening)|howdy|yo|sup|kedu|how far)\b/.test(t) && t.split(" ").length <= 4)
-      return P(pick(["Hey there! 👋 Welcome to De Managers Court.", "Hello! Good to have you at the lounge.", "Kedu! Welcome in."])) +
+      return P(pick(["Hey there! Welcome to De Managers Court.", "Hello! Good to have you at the lounge.", "Kedu! Welcome in."])) +
              P("I can recommend dishes, add them to your cart, tell you delivery fees, or track an order. What are you in the mood for?");
     if (has(t, "thanks", "thank you", "thank u", "thx", "nice one", "great", "perfect", "awesome"))
-      return P(pick(["Anytime! Enjoy. 🥂", "My pleasure! Anything else you'd like?", "You're welcome. Holler if you need me!"]));
+      return P(pick(["Anytime. Enjoy your evening.", "My pleasure! Anything else you'd like?", "You're welcome. Holler if you need me!"]));
     if (has(t, "who are you", "what are you", "are you human", "are you a bot", "your name"))
       return P(`I'm <strong>${esc(C.assistantName)}</strong>, the lounge's AI host. I know every item on the menu and can help you order, pay and track. For anything I can't handle, our team is on WhatsApp.`);
 
@@ -121,7 +121,7 @@
     if (has(t, "checkout", "check out", "pay now", "place order", "place my order", "complete order", "proceed")) {
       if (!ML.cartCount()) return P("Your cart is empty right now. Want a recommendation to get started?");
       setTimeout(ML.openCheckout, 500);
-      return P(`Opening checkout. Your subtotal is <strong>${fmt(ML.cartSubtotal())}</strong>. 🧾`);
+      return P(`Opening checkout. Your subtotal is <strong>${fmt(ML.cartSubtotal())}</strong>.`);
     }
     if (has(t, "my cart", "in my cart", "my basket", "what did i order", "remove", "clear cart", "empty cart")) {
       if (has(t, "clear cart", "empty cart", "remove all", "remove everything")) { Object.keys(ML.getCart()).forEach(id => ML.setQty(id, 0, true)); return P("Done, your cart is cleared."); }
@@ -138,13 +138,13 @@
       items.slice(0, 3).forEach(m => ML.addToCart(m.id, items.length === 1 ? q : 1));
       const names = items.slice(0, 3).map(m => `<strong>${items.length === 1 && q > 1 ? q + "× " : ""}${esc(m.name)}</strong>`).join(", ");
       const pairing = pairFor(items[0]);
-      return P(`Added ${names} to your cart. ✅ Subtotal is now <strong>${fmt(ML.cartSubtotal())}</strong>.`) +
+      return P(`Added ${names} to your cart. Subtotal is now <strong>${fmt(ML.cartSubtotal())}</strong>.`) +
              (pairing ? P(`It goes beautifully with:`) + recs([pairing]) : "") + P(`Say <em>"checkout"</em> whenever you're ready.`);
     }
 
     // hours
     if (has(t, "open", "opening", "close", "closing", "hours", "what time", "today", "tonight") && !items.length && !cat) {
-      return P(ML.isOpenNow() ? "Yes, we're <strong>open right now</strong>! 🟢" : "We're <strong>closed at the moment</strong>, but you can still place an order ahead.") + P(hoursText());
+      return P(ML.isOpenNow() ? "Yes, we're <strong>open right now</strong>!" : "We're <strong>closed at the moment</strong>, but you can still place an order ahead.") + P(hoursText());
     }
     // location
     if (has(t, "where", "location", "address", "located", "direction", "directions", "find you", "map"))
@@ -166,14 +166,14 @@
              P(`<a class="linklike" target="_blank" rel="noopener" href="https://wa.me/${C.whatsapp}?text=${encodeURIComponent("Hello, I'd like to make a reservation at " + C.name)}">Book on WhatsApp →</a>`) +
              (ppl ? P(`For ${ppl} people, I'd suggest:`) + recs(groupPack(ppl)) : "");
     // age / alcohol
-    if (has(t, "age", "18", "underage", "id card")) return P("You must be 18+ to order alcohol. Our riders may ask for ID on delivery. 🙏");
+    if (has(t, "age", "18", "underage", "id card")) return P("You must be 18+ to order alcohol. Our riders may ask for ID on delivery.");
 
     // item info
     if (items.length) {
       const m = items[0];
       const extra = items.length > 1 ? P("Also matching:") + recs(items.slice(1, 4)) : "";
       return P(`<strong>${esc(m.name)}</strong>, ${fmt(m.price)}`) + P(esc(m.desc)) +
-             P(m.tags.includes("signature") ? "It's one of our signatures. Guests come back for it. 👌" : m.tags.includes("spicy") ? "Fair warning: it's got some heat. 🌶" : "A solid choice.") +
+             P(m.tags.includes("signature") ? "It's one of our signatures. Guests come back for it." : m.tags.includes("spicy") ? "Fair warning: it's got some heat." : "A solid choice.") +
              recs([m]) + extra;
     }
 
@@ -182,7 +182,7 @@
     if (recWords || spicy || veg || bud || ppl || cat || wantsDrink || wantsFood) {
       if (ppl && ppl > 2 && (wantsDrink || DRINK.includes(cat)) && !wantsFood) {
         const bottle = byId[ppl >= 6 ? "henvsop" : ppl >= 4 ? "henvs" : "jw"];
-        return P(`For ${ppl} people, a bottle is the move. It comes with an ice bucket and mixers:`) + recs([bottle, byId.moet, byId.manager, byId.chapman]) + P("Add a Small Chops Box or Peppered Asun to share, too. 😉");
+        return P(`For ${ppl} people, a bottle is the move. It comes with an ice bucket and mixers:`) + recs([bottle, byId.moet, byId.manager, byId.chapman]) + P("Add a Small Chops Box or Peppered Asun to share, too.");
       }
       if (ppl && ppl > 2 && !cat) return P(`For a group of ${ppl}, here's a solid spread:`) + recs(groupPack(ppl)) + P("Want me to add them all? Just say <em>add</em> and the names, or tap +.");
       let pool = MENU.slice();
@@ -201,7 +201,7 @@
     }
 
     // fallback
-    return P("I'm not sure I caught that, but I'm learning! 😅 Try asking:") +
+    return P("I didn't catch that. You could ask:") +
            P("• <em>Something spicy under ₦8k</em><br>• <em>Add 2 asun</em><br>• <em>Do you deliver to New Owerri?</em><br>• <em>Track DMC-1234</em>") +
            P(`Or chat with the team on <a class="linklike" target="_blank" rel="noopener" href="https://wa.me/${C.whatsapp}">WhatsApp</a>.`);
   }
@@ -261,7 +261,7 @@
     if (!greeted) {
       greeted = true;
       const hr = new Date().getHours(), g = hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening";
-      bubble(P(`${g}! I'm <strong>${esc(C.assistantName)}</strong>, your AI host at ${esc(C.name)}. ✨`) +
+      bubble(P(`${g}! I'm <strong>${esc(C.assistantName)}</strong>, your AI host at ${esc(C.name)}.`) +
              P("Tell me what you're craving, your budget, or how many people you're with, and I'll sort you out. I can also add items to your cart and track your order."), "bot");
     }
     setTimeout(() => input.focus({ preventScroll: true }), 250);

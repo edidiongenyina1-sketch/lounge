@@ -21,6 +21,11 @@ window.CONFIG = {
      Index 0 = Sunday. A close time past 24 means after midnight (27 = 3 AM). */
   openingTimes: [[14, 24], [12, 24], [12, 24], [12, 24], [12, 24], [12, 27], [12, 27]],
 
+  /* ---------- PHOTOS ----------
+     Put your photos in the images/ folder and set the path here,
+     e.g. "images/hero.jpg" (a wide photo of the room or bar at night). */
+  heroImage: "",
+
   /* ---------- WEEKLY EVENTS ---------- (day: 0 = Sunday) */
   events: [
     { day: 1, title: "Quiz & Wings", time: "7 PM", desc: "Teams of four, cash prize for the winners, half-price wings for every table." },
