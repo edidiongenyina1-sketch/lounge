@@ -22,9 +22,11 @@ window.CONFIG = {
   openingTimes: [[14, 24], [12, 24], [12, 24], [12, 24], [12, 24], [12, 27], [12, 27]],
 
   /* ---------- PHOTOS ----------
-     Put your photos in the images/ folder and set the path here,
-     e.g. "images/hero.jpg" (a wide photo of the room or bar at night). */
-  heroImage: "",
+     Home page photo: images/hero.webp. Menu photos: images/menu/<item id>.webp.
+     Replace those files with your own photos (same names) to update the site. */
+
+  /* Dishes shown on the home page (ids from menu-data.js) */
+  featured: ["nkwobi", "catpep", "ofeowerri", "asun", "jollof", "manager"],
 
   /* ---------- WEEKLY EVENTS ---------- (day: 0 = Sunday) */
   events: [

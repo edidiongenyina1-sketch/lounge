@@ -1,7 +1,7 @@
 /* =========================================================
    MENU DATA — edit names, prices (₦), descriptions here.
    tags: "spicy", "signature", "popular", "veg", "new", "share"
-   img: optional path/URL to a photo, e.g. "images/nkwobi.jpg"
+   img: photo path. If left out, images/menu/<id>.webp is used.
    ========================================================= */
 window.MENU_CATEGORIES = [
   { id: "native",  name: "Native Delicacies", icon: "pot" },
@@ -71,3 +71,8 @@ window.MENU = [
   { id: "shisha1", cat: "shisha", name: "Classic Shisha", price: 15000, tags: [], desc: "Single flavour: double apple, mint, grape or watermelon." },
   { id: "shisha2", cat: "shisha", name: "Premium Shisha", price: 25000, tags: ["popular"], desc: "Mixed flavours, ice hose, served on fresh fruit head." }
 ];
+
+// Items with a photo in images/menu/<id>.webp. Add an id here when you add its photo.
+// Items not listed show a neutral placeholder with the dish name.
+window.MENU_PHOTOS = ["nkwobi"];
+window.MENU.forEach(m => { if (!m.img && window.MENU_PHOTOS.includes(m.id)) m.img = "images/menu/" + m.id + ".webp"; });

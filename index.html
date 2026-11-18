@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="claude:viewport-fit-sides" content="cover">
   <title>De Managers Court</title>
-  <meta name="description" content="De Managers Court, Owerri. Native kitchen, grills, cocktails and bottle service. Order online for delivery, pickup or dine-in, pay online or on arrival, and track your order.">
+  <meta name="description" content="De Managers Court, Owerri. Native kitchen, grills, cocktails and bottle service. Order online for delivery, pickup or dine-in.">
   <meta name="theme-color" content="#0a0a0b">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,342 +12,124 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Manrope:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-
+<body data-page="home">
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
-    <a href="#top" class="brand" aria-label="De Managers Court, back to top">
+    <a href="index.html" class="brand" aria-label="De Managers Court home">
       <img class="brand__mark" src="images/logo-mark-160.webp" alt="" width="160" height="192">
       <span class="brand__text"><span class="brand__name">De Managers</span><span class="brand__sub">Court</span></span>
     </a>
     <nav class="nav__links" id="navLinks" aria-label="Main">
-      <a href="#menu">Menu</a>
-      <a href="#order">Delivery &amp; pickup</a>
-      <a href="#events">This week</a>
-      <a href="#track">Track an order</a>
-      <a href="#visit">Visit</a>
+      <a href="index.html" data-nav="home">Home</a>
+      <a href="menu.html" data-nav="menu">Menu</a>
+      <a href="events.html" data-nav="events">Events</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="contact.html" data-nav="contact">Contact</a>
+      <a href="track.html" data-nav="track">Track order</a>
     </nav>
     <div class="nav__actions">
-      <button class="cart-btn" id="cartBtn" aria-label="Open your order">
+      <a class="cart-btn" href="cart.html" aria-label="Your order">
         <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
         <span class="cart-btn__label">Your order</span>
-        <span class="cart-btn__count" id="cartCount">0</span>
-      </button>
+        <span class="cart-btn__count" data-cart-count>0</span>
+      </a>
       <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
     </div>
   </div>
 </header>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div class="hero__copy">
-        <p class="status"><span class="status__dot" id="openDot"></span><span id="openStatus">Open today</span><span class="status__sep">·</span><span id="todayHours"></span></p>
-        <h1 class="hero__title">Native pots, a full bar and late nights in Owerri.</h1>
-        <p class="hero__lead">Order for delivery anywhere in Owerri, pick up at the counter, or have it brought to your table. Pay online or when it arrives, and follow your order until it reaches you.</p>
-        <div class="hero__cta">
-          <a href="#menu" class="btn btn--gold">Order online</a>
-          <a class="btn btn--line" id="heroBook" target="_blank" rel="noopener">Book a table</a>
-        </div>
-        <ul class="hero__facts">
-          <li><strong>Delivery</strong> from ₦1,000</li>
-          <li><strong>Pickup</strong> in about 20 min</li>
-          <li><strong>Kitchen</strong> open until late</li>
-        </ul>
-      </div>
-      <aside class="hero__media" id="heroMedia" aria-label="Tonight at the Court">
-        <div class="tonight" id="tonight"></div>
-      </aside>
+<main id="main">
+<section class="hero">
+  <img class="hero__img" src="images/hero.webp" alt="A bowl of goat meat pepper soup" width="1600" height="900" fetchpriority="high">
+  <div class="hero__shade"></div>
+  <div class="wrap hero__inner">
+    <p class="status"><span class="status__dot" data-fill="open-dot"></span><span data-fill="open-status">Open now</span><span class="status__sep">·</span><span data-fill="today-hours"></span></p>
+    <h1 class="hero__title">Native pots, a full bar and late nights in Owerri.</h1>
+    <p class="hero__lead">Order for delivery anywhere in Owerri, pick up at the counter, or have it brought to your table.</p>
+    <div class="hero__cta">
+      <a href="menu.html" class="btn btn--gold">Order online</a>
+      <a class="btn btn--line btn--light" data-link="book" target="_blank" rel="noopener">Book a table</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- MENU -->
-  <section class="section" id="menu">
-    <div class="wrap">
-      <header class="head">
-        <h2 class="head__title">Menu</h2>
-        <p class="head__note">Prices in naira. Tell us about allergies in the order note. Alcohol and shisha are for guests 18 and over.</p>
-      </header>
+<section class="strip">
+  <div class="wrap strip__grid">
+    <a href="checkout.html?mode=delivery" class="strip__item"><h3>Delivery</h3><p>Across Owerri from ₦1,000, usually 35 to 45 minutes.</p></a>
+    <a href="checkout.html?mode=pickup" class="strip__item"><h3>Pickup</h3><p>Order ahead and collect at the counter. No delivery fee.</p></a>
+    <a href="checkout.html?mode=dinein" class="strip__item"><h3>Dine-in</h3><p>Order from your seat with your table number.</p></a>
+  </div>
+</section>
 
-      <div class="menu">
-        <nav class="menu__nav" aria-label="Menu sections">
-          <div class="menu__navlist" id="menuTabs"></div>
-        </nav>
-        <div class="menu__body">
-          <div class="menu__tools">
-            <label class="search" for="menuSearch">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-              <input type="search" id="menuSearch" placeholder="Search the menu" aria-label="Search the menu">
-            </label>
-            <div class="filters" role="group" aria-label="Show only">
-              <button class="chip" data-tag="signature">House signature</button>
-              <button class="chip" data-tag="spicy">Spicy</button>
-              <button class="chip" data-tag="veg">Meat-free</button>
-              <button class="chip" data-tag="share">For sharing</button>
-            </div>
-          </div>
-          <div id="menuGrid" aria-live="polite"></div>
-          <p class="menu-empty" id="menuEmpty" hidden>No dishes match that search. Try another word or <button class="linklike" data-open-assistant>ask Ada</button>.</p>
-        </div>
-      </div>
+<section class="section">
+  <div class="wrap">
+    <header class="head">
+      <h2 class="head__title">From the kitchen and the bar</h2>
+      <a class="head__link" href="menu.html">See the full menu</a>
+    </header>
+    <div class="dishes" id="featured"></div>
+  </div>
+</section>
+
+<section class="section section--band">
+  <div class="wrap split">
+    <div class="split__copy">
+      <h2 class="head__title">Tonight</h2>
+      <p class="lead">Something is on every night of the week, from quiz night to Afrobeats Friday.</p>
+      <a class="btn btn--line" href="events.html">See this week</a>
     </div>
-  </section>
+    <div class="tonight" id="tonight"></div>
+  </div>
+</section>
 
-  <!-- ORDERING -->
-  <section class="section section--band" id="order">
-    <div class="wrap">
-      <header class="head">
-        <h2 class="head__title">Delivery, pickup or dine-in</h2>
-        <p class="head__note">Choose at checkout. Every order gets a code you can track on this page.</p>
-      </header>
-      <div class="ways">
-        <article class="way">
-          <h3>Delivery</h3>
-          <p>Across Owerri, usually in 35 to 45 minutes.</p>
-          <dl class="fees" id="feeList"></dl>
-        </article>
-        <article class="way">
-          <h3>Pickup</h3>
-          <p>Order ahead and collect at the counter. Choose as soon as possible or a time that suits you.</p>
-          <p class="way__fact">No delivery fee</p>
-        </article>
-        <article class="way">
-          <h3>Dine-in</h3>
-          <p>Already at the Court? Order from your seat with your table number and we bring it over.</p>
-          <p class="way__fact">Table service</p>
-        </article>
-      </div>
-      <div class="payline">
-        <div>
-          <h3>Pay online</h3>
-          <p>Card, bank transfer or USSD through Paystack.</p>
-        </div>
-        <div>
-          <h3>Pay on arrival</h3>
-          <p>Cash or POS to the rider, at the counter, or a direct transfer to our account using your order code.</p>
-        </div>
-      </div>
+<section class="section">
+  <div class="wrap split">
+    <div class="split__copy">
+      <h2 class="head__title">Pay your way</h2>
+      <p class="lead">Pay online by card, transfer or USSD through Paystack, or pay with cash or POS when your order arrives.</p>
     </div>
-  </section>
-
-  <!-- EVENTS -->
-  <section class="section" id="events">
-    <div class="wrap">
-      <header class="head">
-        <h2 class="head__title">This week at the Court</h2>
-        <p class="head__note">Free entry unless stated. VIP tables go quickly on Friday and Saturday, so book ahead on WhatsApp.</p>
-      </header>
-      <ol class="week" id="weekList"></ol>
+    <div class="split__copy">
+      <h2 class="head__title">Follow your order</h2>
+      <p class="lead">Every order gets a code. Use it to watch your order go from the kitchen to your door.</p>
+      <a class="btn btn--line" href="track.html">Track an order</a>
     </div>
-  </section>
-
-  <!-- TRACK -->
-  <section class="section section--band" id="track">
-    <div class="wrap track">
-      <div class="track__intro">
-        <h2 class="head__title">Track an order</h2>
-        <p class="head__note">Enter the code from your confirmation, for example <code>DMC-4821</code>.</p>
-        <form class="track__form" id="trackForm">
-          <input id="trackInput" placeholder="DMC-0000" aria-label="Order code" autocomplete="off" required>
-          <button class="btn btn--gold" type="submit">Track</button>
-        </form>
-        <div class="recent" id="recentOrders"></div>
-      </div>
-      <div class="track__panel" id="trackPanel">
-        <div class="track__placeholder">
-          <p>Your order's progress will show here, from the kitchen to your door.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT + FAQ -->
-  <section class="section" id="about">
-    <div class="wrap about">
-      <div class="about__copy">
-        <h2 class="head__title">About the Court</h2>
-        <p class="about__lead">De Managers Court is where Owerri's working crowd comes to unwind. Deals close over pepper soup, birthdays end with sparklers, and Fridays run until three.</p>
-        <p>The kitchen cooks Imo classics the slow way: Nkwobi, Isi Ewu, Ofe Owerri and point-and-kill catfish, with asun and suya off the charcoal. The bar mixes zobo, palm wine and Chapman into house cocktails and runs full bottle service for VIP tables.</p>
-      </div>
-      <div class="faq">
-        <h3 class="faq__title">Questions guests ask</h3>
-        <div class="faq__list" id="faqList"></div>
-        <p class="faq__more">Something else? <button class="linklike" data-open-assistant>Ask Ada</button> or message us on WhatsApp.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- VISIT -->
-  <section class="section section--band" id="visit">
-    <div class="wrap visit">
-      <div>
-        <h2 class="head__title">Visit</h2>
-        <div class="visit__grid">
-          <div>
-            <h4>Address</h4>
-            <p id="addr"></p>
-            <a class="linklike" id="dirLink" target="_blank" rel="noopener">Get directions</a>
-          </div>
-          <div>
-            <h4>Hours</h4>
-            <ul class="hours" id="hoursList"></ul>
-          </div>
-          <div>
-            <h4>Reservations and events</h4>
-            <p>VIP tables, birthdays and private hangouts.</p>
-            <a class="linklike" id="waReserve" target="_blank" rel="noopener">Book on WhatsApp</a>
-          </div>
-          <div>
-            <h4>Phone</h4>
-            <p><a id="phoneLink" class="linklike"></a></p>
-          </div>
-        </div>
-      </div>
-      <a class="map" id="mapCard" target="_blank" rel="noopener" aria-label="Open the location in Google Maps">
-        <svg class="map__art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="400" height="300" fill="var(--panel)"/>
-          <path d="M0 52H400M0 128H400M0 206H400M0 270H400M64 0V300M160 0V300M252 0V300M336 0V300" stroke="var(--rule)" fill="none"/>
-          <path d="M-10 222 C 90 196, 150 112, 228 102 S 360 56, 420 38" stroke="var(--panel-2)" stroke-width="20" fill="none"/>
-          <path d="M120 -10 L 196 310" stroke="var(--panel-2)" stroke-width="13" fill="none"/>
-          <path d="M300 -10 C 280 110, 330 200, 290 310" stroke="var(--panel-2)" stroke-width="9" fill="none"/>
-          <path d="M204 82c-11 0-20 9-20 20 0 15 20 32 20 32s20-17 20-32c0-11-9-20-20-20Z" fill="var(--gold)"/>
-          <circle cx="204" cy="102" r="6.5" fill="var(--ink)"/>
-          <text x="30" y="214" fill="var(--text-2)" font-size="10" font-family="Montserrat, sans-serif" letter-spacing="2">WETHERAL RD</text>
-        </svg>
-        <span class="map__label"><strong>De Managers Court</strong><span id="mapAddr"></span><em>Open in Google Maps</em></span>
-      </a>
-    </div>
-  </section>
+  </div>
+</section>
 </main>
-
 <footer class="footer">
-  <div class="wrap footer__inner">
-    <img class="footer__logo" src="images/logo-full-640.webp" alt="De Managers Court" width="640" height="584">
-    <div class="footer__links">
-      <a id="igLink" target="_blank" rel="noopener">Instagram</a>
-      <a id="waLink" target="_blank" rel="noopener">WhatsApp</a>
-      <a id="mailLink">Email</a>
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <img class="footer__logo" src="images/logo-full-640.webp" alt="De Managers Court" width="640" height="584">
     </div>
-    <p class="footer__legal">© <span id="year"></span> De Managers Court, Owerri. Please drink responsibly. 18+ for alcohol and shisha.</p>
+    <div>
+      <h4>Visit</h4>
+      <p data-fill="address"></p>
+      <p><span data-fill="open-status"></span> · <span data-fill="today-hours"></span></p>
+      <a class="linklike" data-link="directions" target="_blank" rel="noopener">Get directions</a>
+    </div>
+    <div>
+      <h4>Order</h4>
+      <a href="menu.html">Menu</a>
+      <a href="cart.html">Your order</a>
+      <a href="track.html">Track an order</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a data-fill="phone"></a>
+      <a data-link="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+      <a data-link="instagram" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="wrap footer__legal">
+    <p>© <span data-fill="year"></span> De Managers Court, Owerri. Please drink responsibly. 18+ for alcohol and shisha.</p>
+    <a href="credits.html">Photo credits</a>
   </div>
 </footer>
-
-<div class="scrim" id="scrim" hidden></div>
-<aside class="drawer" id="cartDrawer" aria-label="Your order" aria-hidden="true">
-  <div class="drawer__head">
-    <h3>Your order</h3>
-    <button class="icon-btn" data-close-drawer aria-label="Close">✕</button>
-  </div>
-  <div class="drawer__body" id="cartItems"></div>
-  <div class="drawer__foot">
-    <div class="row"><span>Subtotal</span><strong id="cartSubtotal">₦0</strong></div>
-    <p class="small muted">Delivery fee is added at checkout.</p>
-    <button class="btn btn--gold btn--block" id="checkoutBtn" disabled>Go to checkout</button>
-  </div>
-</aside>
-
-<!-- ============ CHECKOUT MODAL ============ -->
-<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coTitle" hidden>
-  <div class="modal__card modal__card--wide">
-    <button class="icon-btn modal__close" data-close-modal aria-label="Close">✕</button>
-    <h3 id="coTitle">Checkout</h3>
-    <form id="checkoutForm" class="co" novalidate>
-      <div class="co__main">
-        <fieldset>
-          <legend>1. How would you like it?</legend>
-          <div class="seg" role="radiogroup">
-            <label><input type="radio" name="mode" value="delivery" checked><span>Delivery</span></label>
-            <label><input type="radio" name="mode" value="pickup"><span>Pickup</span></label>
-            <label><input type="radio" name="mode" value="dinein"><span>Dine-in</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>2. Your details</legend>
-          <div class="grid2">
-            <label class="field"><span>Full name</span><input name="name" required autocomplete="name"></label>
-            <label class="field"><span>Phone</span><input name="phone" type="tel" required autocomplete="tel" placeholder="080..."></label>
-          </div>
-          <label class="field"><span>Email <em class="muted">(for receipt)</em></span><input name="email" type="email" autocomplete="email"></label>
-          <div data-mode-show="delivery">
-            <label class="field"><span>Delivery area</span><select name="zone" id="zoneSelect"></select></label>
-            <label class="field"><span>Street address &amp; landmark</span><input name="address" placeholder="e.g. 5 Okigwe Rd, opposite First Bank"></label>
-          </div>
-          <div data-mode-show="dinein" hidden>
-            <label class="field"><span>Table number</span><input name="table" placeholder="e.g. VIP 3 or Table 12"></label>
-          </div>
-          <div data-mode-show="pickup" hidden>
-            <label class="field"><span>Pickup time</span>
-              <select name="pickupTime"><option>As soon as possible</option><option>In 30 minutes</option><option>In 1 hour</option><option>In 2 hours</option></select>
-            </label>
-          </div>
-          <label class="field"><span>Note for the kitchen <em class="muted">(optional)</em></span><textarea name="note" rows="2" placeholder="Less pepper, no onions, extra cold…"></textarea></label>
-        </fieldset>
-
-        <fieldset>
-          <legend>3. Payment</legend>
-          <div class="paylist">
-            <label class="payopt"><input type="radio" name="pay" value="online" checked>
-              <span><strong>Pay online now</strong><small>Card · Transfer · USSD via Paystack</small></span></label>
-            <label class="payopt" data-pay-for="delivery"><input type="radio" name="pay" value="cod">
-              <span><strong>Cash / POS on delivery</strong><small>Pay the rider when it arrives</small></span></label>
-            <label class="payopt" data-pay-for="pickup dinein" hidden><input type="radio" name="pay" value="counter">
-              <span><strong>Pay at the counter</strong><small>Cash or POS at the lounge</small></span></label>
-            <label class="payopt"><input type="radio" name="pay" value="transfer">
-              <span><strong>Direct bank transfer</strong><small>We confirm before we start cooking</small></span></label>
-          </div>
-          <div class="bankbox" id="bankBox" hidden></div>
-        </fieldset>
-        <p class="form-error" id="coError" role="alert"></p>
-      </div>
-
-      <aside class="co__summary">
-        <h4>Summary</h4>
-        <div id="coItems" class="co__items"></div>
-        <div class="row"><span>Subtotal</span><span id="coSub"></span></div>
-        <div class="row" id="coFeeRow"><span>Delivery</span><span id="coFee"></span></div>
-        <div class="row" id="coSvcRow" hidden><span>Service charge</span><span id="coSvc"></span></div>
-        <div class="row row--total"><span>Total</span><strong id="coTotal"></strong></div>
-        <button class="btn btn--gold btn--block" type="submit" id="placeBtn">Place order</button>
-        <p class="muted small center" id="demoNote"></p>
-      </aside>
-    </form>
+<div class="orderbar" id="orderBar" hidden>
+  <div class="wrap orderbar__inner">
+    <span id="orderBarText"></span>
+    <a class="btn btn--gold" href="cart.html">View order</a>
   </div>
 </div>
-
-<!-- ============ DEMO PAYMENT (shown when no Paystack key) ============ -->
-<div class="modal" id="demoPayModal" role="dialog" aria-modal="true" hidden>
-  <div class="modal__card modal__card--sm center">
-    <div class="paystack-mock">
-      <p class="muted small">DEMO PAYMENT · no money will be charged</p>
-      <h3 id="demoPayAmount">₦0</h3>
-      <p class="muted small">Add your Paystack public key in <code>js/config.js</code> to accept real payments.</p>
-      <div class="demo-actions">
-        <button class="btn btn--gold btn--block" id="demoPaySuccess">Simulate successful payment</button>
-        <button class="btn btn--ghost btn--block" id="demoPayCancel">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============ ORDER SUCCESS ============ -->
-<div class="modal" id="successModal" role="dialog" aria-modal="true" hidden>
-  <div class="modal__card modal__card--sm center">
-    <div class="check">✓</div>
-    <h3>Order placed</h3>
-    <p class="muted">Your order code is</p>
-    <p class="code" id="successCode">DMC-0000</p>
-    <p class="muted small" id="successMsg"></p>
-    <div class="demo-actions">
-      <button class="btn btn--gold btn--block" id="successTrack">Track my order</button>
-      <a class="btn btn--ghost btn--block" id="successWa" target="_blank" rel="noopener">Send order to the lounge on WhatsApp</a>
-    </div>
-  </div>
-</div>
-
-
 <button class="ai-fab" id="aiFab" data-open-assistant aria-label="Chat with Ada, our assistant">
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z"/></svg>
   <span class="ai-fab__txt">Ask Ada</span>
@@ -356,27 +137,21 @@
 <section class="ai" id="aiPanel" aria-label="Ada, assistant" aria-hidden="true">
   <header class="ai__head">
     <img class="ai__avatar" src="images/logo-mark-160.webp" alt="" width="160" height="192">
-    <div>
-      <strong>Ada</strong>
-      <span class="ai__sub">Assistant · knows the full menu</span>
-    </div>
+    <div><strong>Ada</strong><span class="ai__sub">Assistant · knows the full menu</span></div>
     <button class="icon-btn" id="aiClose" aria-label="Close chat">✕</button>
   </header>
   <div class="ai__log" id="aiLog" aria-live="polite"></div>
   <div class="ai__chips" id="aiChips"></div>
   <form class="ai__form" id="aiForm">
     <input id="aiInput" placeholder="Ask about dishes, delivery or your order" autocomplete="off" aria-label="Message Ada">
-    <button class="ai__send" aria-label="Send">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </button>
+    <button class="ai__send" aria-label="Send"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </form>
 </section>
-
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
 <script src="js/config.js"></script>
 <script src="js/menu-data.js"></script>
-<script src="js/app.js"></script>
+<script src="js/core.js"></script>
+<script src="js/pages.js"></script>
 <script src="js/assistant.js"></script>
 </body>
 </html>

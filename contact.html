@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact · De Managers Court</title>
+  <meta name="description" content="Find De Managers Court on Wetheral Road, Owerri. Opening hours, delivery areas, phone, WhatsApp and event enquiries.">
+  <meta name="theme-color" content="#0a0a0b">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Manrope:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="contact">
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a href="index.html" class="brand" aria-label="De Managers Court home">
+      <img class="brand__mark" src="images/logo-mark-160.webp" alt="" width="160" height="192">
+      <span class="brand__text"><span class="brand__name">De Managers</span><span class="brand__sub">Court</span></span>
+    </a>
+    <nav class="nav__links" id="navLinks" aria-label="Main">
+      <a href="index.html" data-nav="home">Home</a>
+      <a href="menu.html" data-nav="menu">Menu</a>
+      <a href="events.html" data-nav="events">Events</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="contact.html" data-nav="contact">Contact</a>
+      <a href="track.html" data-nav="track">Track order</a>
+    </nav>
+    <div class="nav__actions">
+      <a class="cart-btn" href="cart.html" aria-label="Your order">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-btn__label">Your order</span>
+        <span class="cart-btn__count" data-cart-count>0</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<header class="pagehead">
+  <div class="wrap">
+    <h1 class="pagehead__title">Contact and visit</h1>
+    
+  </div>
+</header>
+<section class="section section--tight">
+  <div class="wrap visit">
+    <div class="visit__grid">
+      <div><h4>Address</h4><p data-fill="address"></p><a class="linklike" data-link="directions" target="_blank" rel="noopener">Get directions</a></div>
+      <div><h4>Hours</h4><ul class="hours" id="hoursList"></ul></div>
+      <div><h4>Phone</h4><p><a class="linklike" data-fill="phone"></a></p><p><a class="linklike" data-link="whatsapp" target="_blank" rel="noopener">Message us on WhatsApp</a></p></div>
+      <div><h4>Email</h4><p><a class="linklike" data-fill="email"></a></p></div>
+    </div>
+    <a class="map" data-link="directions" target="_blank" rel="noopener" aria-label="Open the location in Google Maps">
+      <svg class="map__art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="400" height="300" fill="var(--panel)"/>
+        <path d="M0 52H400M0 128H400M0 206H400M0 270H400M64 0V300M160 0V300M252 0V300M336 0V300" stroke="var(--rule)" fill="none"/>
+        <path d="M-10 222 C 90 196, 150 112, 228 102 S 360 56, 420 38" stroke="var(--panel-2)" stroke-width="20" fill="none"/>
+        <path d="M120 -10 L 196 310" stroke="var(--panel-2)" stroke-width="13" fill="none"/>
+        <path d="M204 82c-11 0-20 9-20 20 0 15 20 32 20 32s20-17 20-32c0-11-9-20-20-20Z" fill="var(--gold)"/>
+        <circle cx="204" cy="102" r="6.5" fill="var(--ink)"/>
+        <text x="30" y="214" fill="var(--text-2)" font-size="10" font-family="Montserrat, sans-serif" letter-spacing="2">WETHERAL RD</text>
+      </svg>
+      <span class="map__label"><strong>De Managers Court</strong><span data-fill="address"></span><em>Open in Google Maps</em></span>
+    </a>
+  </div>
+</section>
+<section class="section section--band">
+  <div class="wrap split">
+    <div class="split__copy">
+      <h2 class="head__title">Delivery areas</h2>
+      <p class="lead">Fees are added at checkout. Most deliveries arrive in 35 to 45 minutes.</p>
+    </div>
+    <dl class="fees fees--big" id="feeList"></dl>
+  </div>
+</section>
+<section class="section" id="enquiry">
+  <div class="wrap split">
+    <div class="split__copy">
+      <h2 class="head__title">Reservations and events</h2>
+      <p class="lead">Tell us what you're planning. Your enquiry opens in WhatsApp so our team can reply straight away.</p>
+    </div>
+    <form class="enquiry" id="enquiryForm" novalidate>
+      <div class="grid2">
+        <label class="field"><span>Your name</span><input id="ename" name="ename" autocomplete="name"></label>
+        <label class="field"><span>Phone</span><input id="ephone" name="ephone" type="tel" autocomplete="tel"></label>
+      </div>
+      <div class="grid3">
+        <label class="field"><span>Type</span><select id="etype" name="etype"><option>Table reservation</option><option>VIP section</option><option>Birthday</option><option>Corporate event</option></select></label>
+        <label class="field"><span>Date</span><input id="edate" name="edate" type="date"></label>
+        <label class="field"><span>Guests</span><input id="eguests" name="eguests" type="number" min="1" max="200"></label>
+      </div>
+      <label class="field"><span>Anything else</span><textarea id="emsg" name="emsg" rows="3"></textarea></label>
+      <p class="form-error" id="enqError" role="alert"></p>
+      <button class="btn btn--gold" type="submit">Send on WhatsApp</button>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <img class="footer__logo" src="images/logo-full-640.webp" alt="De Managers Court" width="640" height="584">
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <p data-fill="address"></p>
+      <p><span data-fill="open-status"></span> · <span data-fill="today-hours"></span></p>
+      <a class="linklike" data-link="directions" target="_blank" rel="noopener">Get directions</a>
+    </div>
+    <div>
+      <h4>Order</h4>
+      <a href="menu.html">Menu</a>
+      <a href="cart.html">Your order</a>
+      <a href="track.html">Track an order</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a data-fill="phone"></a>
+      <a data-link="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+      <a data-link="instagram" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="wrap footer__legal">
+    <p>© <span data-fill="year"></span> De Managers Court, Owerri. Please drink responsibly. 18+ for alcohol and shisha.</p>
+    <a href="credits.html">Photo credits</a>
+  </div>
+</footer>
+
+<button class="ai-fab" id="aiFab" data-open-assistant aria-label="Chat with Ada, our assistant">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z"/></svg>
+  <span class="ai-fab__txt">Ask Ada</span>
+</button>
+<section class="ai" id="aiPanel" aria-label="Ada, assistant" aria-hidden="true">
+  <header class="ai__head">
+    <img class="ai__avatar" src="images/logo-mark-160.webp" alt="" width="160" height="192">
+    <div><strong>Ada</strong><span class="ai__sub">Assistant · knows the full menu</span></div>
+    <button class="icon-btn" id="aiClose" aria-label="Close chat">✕</button>
+  </header>
+  <div class="ai__log" id="aiLog" aria-live="polite"></div>
+  <div class="ai__chips" id="aiChips"></div>
+  <form class="ai__form" id="aiForm">
+    <input id="aiInput" placeholder="Ask about dishes, delivery or your order" autocomplete="off" aria-label="Message Ada">
+    <button class="ai__send" aria-label="Send"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</section>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="js/config.js"></script>
+<script src="js/menu-data.js"></script>
+<script src="js/core.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/assistant.js"></script>
+</body>
+</html>
